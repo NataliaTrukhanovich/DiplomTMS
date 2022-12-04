@@ -3,6 +3,8 @@ package pageObjects.vsemaykiPages;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import pageObjects.baseObjects.BasePage;
 @Log4j
@@ -16,6 +18,7 @@ public class ProductPage extends BasePage {
 
 
     public ProductPage checkPopUp() {
+        waitVisibilityOfElement(iconPopup);
         WebElement element = findElements(iconPopup).get(1);
         log.debug("Move to element :: "+ element);
         actions.moveToElement(element).build().perform();

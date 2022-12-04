@@ -17,7 +17,7 @@ public class OwnDesignPage extends BasePage {
     public OwnDesignPage clickCloseWindow() {
         log.debug("Close dialog window");
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             if (!elementNotExist(closeDialogWindow)) {
                 click(closeDialogWindow);
             }
@@ -28,7 +28,7 @@ public class OwnDesignPage extends BasePage {
     }
 
         public OwnDesignPage uploadImg() {
-        log.debug("Upload file by locator ::" + addImgBtn);
+        log.debug("Upload file by locator ::" + addImgInput);
         findElement(addImgInput).sendKeys(pathToFile);
         return this;
     }

@@ -10,7 +10,7 @@ public class ManWearPage extends BasePage {
     public ManWearPage clickMenTshirts() {
         log.debug("Choose Man T-shirts");
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             click(menTshirts);
             return this;
         } catch (InterruptedException e) {
