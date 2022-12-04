@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="vseMaykiTests" thread-count="1" parallel="tests">
+
+    <test name="UiTests">
+        <classes>
+            <class name="vseMaykiTests.UiTests"/>
+        </classes>
+    </test>
+
+    <test name="ApiTests">
+        <classes>
+            <class name="vseMaykiTests.ApiTests"/>
+        </classes>
+    </test>
+</suite>
+
+
+
