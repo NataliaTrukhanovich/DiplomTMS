@@ -31,8 +31,10 @@ public class ShoppingCartPage extends BasePage {
     }
     public ShoppingCartPage checkNumberOfProducts(String ourValue, String expectedValue) {
         log.debug("Set " + ourValue + " products");
+        waitUntil(2);
         findElement(numberOfProducts).sendKeys(Keys.LEFT_CONTROL + "a", Keys.DELETE);
         log.debug("Check limit value if value = " + ourValue + " : ");
+        waitUntil(2);
         findElement(numberOfProducts).sendKeys(ourValue);
         Assert.assertEquals(findElement(numberOfProducts).getAttribute("value"), expectedValue);
         return this;
