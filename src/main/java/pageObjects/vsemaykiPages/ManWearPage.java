@@ -12,6 +12,7 @@ public class ManWearPage extends BasePage {
     public ManWearPage clickMenTshirts() {
         log.debug("Choose Man T-shirts");
         actions.moveToElement(findElement(header)).build().perform();
+        waitUntil(2);
         click(menTshirts);
         return this;
     }

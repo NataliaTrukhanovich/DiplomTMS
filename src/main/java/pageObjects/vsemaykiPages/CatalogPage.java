@@ -20,6 +20,7 @@ public CatalogPage clickProduct(){
         return this;
 }
     public String getNameOfItem(int index){
+        waitUntil(2);
          return getListOfItems().get(index).getText();
     }
     public int getNumberOfItemsOnPage(){
