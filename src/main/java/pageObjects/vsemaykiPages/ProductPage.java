@@ -3,25 +3,26 @@ package pageObjects.vsemaykiPages;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import pageObjects.baseObjects.BasePage;
+
 @Log4j
 public class ProductPage extends BasePage {
 
-    private final By iconPopup = By.xpath("//div[@class='_3joS7Xdf KdtktrZO']//span[@class='_3t12687U']//*[name()='svg']");
+    private final By iconPopup = By.xpath("//span[@data-place]//following-sibling::span");
     private final By popUpWindow = By.xpath("//div[@class='D_JihIwi ATOjLJuG']");
     private final By productName = By.xpath("//span[@class='product__info-name']");
-    private final By addBtn = By.xpath("//button[@class='_3q1PZ3XG']");
-    private final By moveToBasketBtn = By.xpath("//button[@class='_3q1PZ3XG _2EUUbTOK']");
+    private final By addBasketBtn = By.xpath("//div[@class='HYMmu_O3 THepThzB row']//button");
+    private final By moveBasketBtn = By.xpath("//div[@class='HYMmu_O3 THepThzB row']//button[text()='Перейти в корзину']");
 
 
     public ProductPage checkPopUp() {
         waitVisibilityOfElement(iconPopup);
         WebElement element = findElements(iconPopup).get(1);
-        log.debug("Move to element :: "+ element);
+        waitUntil(1);
+        log.debug("Move to element :: " + element);
         actions.moveToElement(element).build().perform();
+        waitUntil(1);
         waitVisibilityOfElement(popUpWindow);
         Assert.assertTrue(findElement(popUpWindow).isDisplayed());
         actions.moveToElement(findElement(productName)).build().perform();
@@ -30,13 +31,14 @@ public class ProductPage extends BasePage {
 
     public ProductPage addToBasket() {
         log.debug("Add to the basket");
-        click(addBtn);
+        click(addBasketBtn);
         return this;
     }
 
     public ProductPage moveToBasket() {
         log.debug("Move to the basket");
-        click(moveToBasketBtn);
+        waitUntil(3);
+        click(moveBasketBtn);
         return this;
     }
 

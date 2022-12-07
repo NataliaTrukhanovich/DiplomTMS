@@ -17,7 +17,7 @@ public class ChromeDriverManager extends DriverManager{
         Properties properties=getProperties();
         ChromeOptions chromeOptions = new ChromeOptions();
         WebDriverManager.chromedriver().setup();
-        driver=new ChromeDriver(chromeOptions.addArguments(properties.getProperty("browser.configs")));
+        driver=new ChromeDriver(chromeOptions.addArguments(properties.getProperty("browser.configs").split(";")));
         webDriver.set(driver);
     }
 }

@@ -26,7 +26,7 @@ public class ApiTests extends BaseTest {
     }
 
     @Test(description = "Check name of the t-shirt")
-    public void getTest() {
+    public void checkNameOfProductGetTest() {
         get(HomePage.class)
                 .open()
                 .clickCookies()
@@ -42,14 +42,14 @@ public class ApiTests extends BaseTest {
         Assert.assertEquals(response.then().extract().response().statusCode(), 200);
 
         String nameOfItemApi = response.then().extract().response().jsonPath()
-        .getList("items.title").get(index).toString();
+                .getList("items.title").get(index).toString();
 
         Assert.assertTrue(nameOfItem.contains(nameOfItemApi));
 
     }
 
     @Test(description = "Check limit of products in the list")
-    public void getTest2() {
+    public void checkLimitOfProductsGetTest() {
         get(HomePage.class)
                 .open()
                 .clickManWear();
@@ -57,29 +57,27 @@ public class ApiTests extends BaseTest {
                 .clickMenTshirts();
 
         Response response = given().get("/catalog/items?filter[category]=man_tshirts&sort=sell&limit=36");
-        System.out.println(response.then().extract().response().jsonPath().getInt("limit"));
         int countApi = response.then().extract().response().jsonPath().getInt("limit");
-        System.out.println(countApi);
         int count = get(CatalogPage.class).getNumberOfItemsOnPage();
-        System.out.println("count = "+count);
         Assert.assertEquals(count, countApi);
     }
 
     @Test(description = "Check offset<0")
-    public void getTest3() {
+    public void checkOffsetGetTest() {
         Response response = given().get("/catalog/items?filter[category]=man_tshirts&sort=sell&limit=36&offset=-1");
         response.then().assertThat().statusCode(400);
         response.then().assertThat().body(matchesJsonSchema(getJsonData("errorMessage")));
     }
 
     @Test(description = "POST request for favourite items")
-    public void checkSettingFavouriteItem(){
+    public void checkSettingFavouriteItemPostTest() {
         Response response = given().header("Content-Type", "application/json")
-                .body(getJsonData("FavouriteItems")).post(baseURI+"/rest/favorite/6a6c83d119eeb099eb1f51351b1d2482040e1b94/item");
+                .body(getJsonData("FavouriteItems")).post(baseURI + "/rest/favorite/6a6c83d119eeb099eb1f51351b1d2482040e1b94/item");
         response.then().assertThat().statusCode(200);
         Assert.assertEquals(response.then().extract().response().jsonPath().getString("data.design"), "1930763");
-        System.out.println(response.then().extract().response().jsonPath().getString("message"));
+        Assert.assertEquals(response.then().extract().response().jsonPath().getString("message"),"Item saved successfully");
     }
+
     public String getJsonData(String filename) {
         try {
             return new String(Files.readAllBytes(Paths.get("files/" + filename + ".json")));

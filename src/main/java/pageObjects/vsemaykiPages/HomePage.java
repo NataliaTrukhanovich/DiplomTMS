@@ -8,11 +8,11 @@ import pageObjects.baseObjects.BasePage;
 @Log4j
 public class HomePage extends BasePage {
 
-    private final By elementLocation = By.xpath("//span[@class='_2t8wVAvg']");
+    private final By elementLocation = By.xpath("//span//*[@data-autotest='component-10']");
     private final By dialogWindow = By.xpath("//div[@role='dialog']");
     private final By location = By.xpath("//div[@title='Казахстан']");
     private final By cookieBtn = By.xpath("//button[@class='button--3Rjqx button--primary--9plKk']");
-    private final By searchIcon = By.xpath("//div[@class='_2ZLue7Fy']");
+    private final By searchIcon = By.xpath("//*[contains(text(), 'Поиск')]//preceding-sibling::i//*[@data-autotest='component-15']");
     private final By searchField = By.xpath("//div[@class='input-search--XRcYj focus--2Bgxp']//input[@data-autotest='InputSearch-5']");
     private final By product = By.xpath("//div[@data-autotest-design='3034333']");
     private final By ownDesignProduct = By.xpath("//div[@data-autotest='Product']");
@@ -24,6 +24,7 @@ public class HomePage extends BasePage {
     private final By errorMessage = By.xpath("//div[@class='invalid-feedback']");
     private final By submitCountry = By.xpath("//span[@data-autotest='component-4' and text()='Все верно']");
     private final By manWear = By.xpath("//div[@class='swiper-slide swiper-slide-active']");
+    private final By manWearTshirts = By.xpath("//div[@class='container']//div[@data-autotest='NavItem']//a[text()='Мужские футболки']");
 
     public HomePage open() {
         load();
@@ -95,8 +96,8 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickManWear() {
-        waitVisibilityOfElement(manWear);
         actions.moveToElement(findElement(manWear)).build().perform();
+        waitVisibilityOfElement(manWearTshirts);
         log.debug("Choose Man Wear");
         click(manWear);
         return this;

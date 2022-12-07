@@ -7,14 +7,14 @@ import org.testng.Assert;
 import pageObjects.baseObjects.BasePage;
 @Log4j
 public class ShoppingCartPage extends BasePage {
-    private final By fullBasket = By.className("_3QL9fY_9");
-    private final By emptyBasket = By.className("_3-XmRGcC");
+    private final By fullBasket = By.xpath("//div[@class='bZSQdoZT']//child::a[@href='/cart']//following-sibling::span");
+    private final By emptyBasket = By.xpath("//div[@id='content']//div[@class='container']//div//p");
     private final By deleteProductBtn = By.xpath("//div[@class='aQBZWaSX']");
     private final By numberOfProducts = By.xpath("//button//following-sibling::input[@type='number']");
 
     public ShoppingCartPage checkProductInBasket(){
-        log.debug("Товары в корзине, если есть поле " + findElement(fullBasket).getText());
-        Assert.assertEquals(findElement(fullBasket).getText(),"Итого");
+        log.debug("Check items in the basket " + findElement(fullBasket).getText());
+        Assert.assertTrue(findElement(fullBasket).isDisplayed());
         return this;
     }
 

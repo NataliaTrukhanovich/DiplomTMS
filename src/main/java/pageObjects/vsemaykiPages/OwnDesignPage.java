@@ -16,15 +16,11 @@ public class OwnDesignPage extends BasePage {
 
     public OwnDesignPage clickCloseWindow() {
         log.debug("Close dialog window");
-        try {
-            Thread.sleep(5000);
-            if (!elementNotExist(closeDialogWindow)) {
-                click(closeDialogWindow);
-            }
-            return this;
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitUntil(5);
+        if (!elementNotExist(closeDialogWindow)) {
+            click(closeDialogWindow);
+                   }
+        return this;
     }
 
         public OwnDesignPage uploadImg() {

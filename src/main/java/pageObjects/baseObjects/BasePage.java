@@ -63,7 +63,7 @@ public abstract class BasePage {
 
     public Boolean elementNotExist(By by) {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-        for (int counter = 1; counter < 5; counter++) {
+        for (int counter = 1; counter < 3; counter++) {
             log.debug("Wait element for not exist counter = " + counter);
             if (findElements(by).size() == 0) {
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -77,7 +77,7 @@ public abstract class BasePage {
 
     protected void waitUntil(int second) {
         try {
-            Thread.sleep(second * 1000);
+            Thread.sleep(second * 3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
