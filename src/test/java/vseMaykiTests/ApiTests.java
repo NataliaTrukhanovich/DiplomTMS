@@ -52,6 +52,8 @@ public class ApiTests extends BaseTest {
     public void checkLimitOfProductsGetTest() {
         get(HomePage.class)
                 .open()
+                .clickCookies()
+                .clickSubmitCountry()
                 .clickManWear();
         get(ManWearPage.class)
                 .clickMenTshirts();

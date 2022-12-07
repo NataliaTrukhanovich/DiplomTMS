@@ -47,6 +47,6 @@ public abstract class BaseTest {
     @AfterTest()
     public void stopDriver() {
         log.debug("Closing web driver!");
-        //closeDriver();
+        closeDriver();
     }
 }
