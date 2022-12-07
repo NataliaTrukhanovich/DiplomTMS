@@ -15,6 +15,7 @@ public class CatalogPage extends BasePage {
         return findElements(listItems);
     }
 public CatalogPage clickProduct(){
+        waitUntil(3);
         click(product);
         return this;
 }
